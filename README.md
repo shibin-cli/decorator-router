@@ -67,6 +67,7 @@ methods
 -   put
 -   post
 -   all
+-   convert
 
 ### Route
 

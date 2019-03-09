@@ -1,6 +1,6 @@
 {
   "name": "koa-decorator-router",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -25,9 +25,5 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1"
-  },
-  "dependencies": {
-    "koa": "^2.7.0",
-    "koa-router": "^7.4.0"
   }
 }
