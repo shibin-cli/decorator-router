@@ -1,3 +1,7 @@
+import {
+  isArray
+} from './util'
+
 const routerMap = new Map()
 
 export const get = path => router({
@@ -36,6 +40,15 @@ export const controller = path => target => {
   target.prototype['basePath'] = path
 }
 
+export const convert = (middleware) => () => (target, key, descriptor) => {
+  if (!isArray(target[key])) {
+    target[key] = [target[key]]
+  }
+  target[key].unshift(middleware)
+  return descriptor
+}
+
+
 export default class Route {
   init(router) {
     for (let [
@@ -46,7 +59,10 @@ export default class Route {
       if (conf.target['basePath']) {
         basePath = conf.target['basePath']
       }
-      router[conf.method](basePath + conf.path, controller)
+      if (!isArray(controller)) {
+        controller = [controller]
+      }
+      router[conf.method](basePath + conf.path, ...controller)
     }
   }
 }

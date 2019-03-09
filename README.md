@@ -1,12 +1,18 @@
 Decorator Routing
 
 ## Install
-```
-npm i koa-decorator-router -S
-```
+
+    npm i koa-decorator-router -S
 
 ```javascript
-import Route,{get,post,put,del,all} from 'koa-decorator-router'
+import Route, {
+  post,
+  put,
+  del,
+  get,
+  controller,
+  convert
+} from 'koa-decorator-router'
 import Koa from 'koa'
 import Router from 'koa-router'
 
@@ -14,10 +20,16 @@ const app = new Koa()
 const router = new Router()
 const route = new Route()
 
+const middleware1 = convert(async (ctx, next) => {
+  console.log("middleware1")
+  await next()
+})
+
 @controller('/article')
 class Article {
 
   @get('/detail/:id')
+  @middleware1()
   getDetail(ctx) {
     ctx.body = `detail ${ctx.params.id}`
   }
@@ -32,7 +44,8 @@ class Article {
     ctx.body = 'post'
   }
 
-  @del('/del') {
+  @del('/del')
+  delArticle() {
     ctx.body = 'del'
   }
 }
@@ -56,4 +69,5 @@ methods
 -   all
 
 ### Route
-     `init`  Functions for mounting routing
+
+  `init`  Functions for mounting routing
