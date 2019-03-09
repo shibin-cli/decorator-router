@@ -16,18 +16,22 @@ const route = new Route()
 
 @controller('/article')
 class Article {
+
   @get('/detail/:id')
   getDetail(ctx) {
     ctx.body = `detail ${ctx.params.id}`
   }
+
   @put('/add')
   addArticle() {
     ctx.body = 'add'
   }
+
   @post('/post')
   updateArticle() {
     ctx.body = 'post'
   }
+
   @del('/del') {
     ctx.body = 'del'
   }
@@ -40,7 +44,7 @@ app
 app.listen(3000)
 ```
 
-\##Api
+## Api
 
 -   controller
 
@@ -50,5 +54,6 @@ methods
 -   put
 -   post
 -   all
-    ### Route
+
+### Route
      `init`  Functions for mounting routing
