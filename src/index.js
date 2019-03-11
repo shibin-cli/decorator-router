@@ -40,13 +40,26 @@ export const controller = path => target => {
   target.prototype['basePath'] = path
 }
 
-export const convert = (middleware) => () => (target, key, descriptor) => {
+export const convert = (middleware) => (target, key, descriptor) => {
   if (!isArray(target[key])) {
     target[key] = [target[key]]
   }
   target[key].unshift(middleware)
   return descriptor
 }
+
+export const required = rules => convert(async (ctx, next) => {
+  let missing = [query:[],body:[],]
+  for (let k in rules) {
+    let err = [],type=ctx.request[k]
+    rules.forEach(i => {
+      if(!type[i]){
+        err.length?(missing[type]=[i]):missing[type].push(i)
+      }
+    })
+  }
+  await next()
+})
 
 
 export default class Route {
