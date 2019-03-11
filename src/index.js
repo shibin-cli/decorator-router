@@ -10,7 +10,7 @@ export const get = path => router({
 })
 
 export const post = path => router({
-  method: 'get',
+  method: 'post',
   path: path
 })
 
