@@ -4,14 +4,17 @@ import Route, {
   del,
   get,
   controller,
-  convert
+  convert,
+  required
 } from '../dist/index'
 import Koa from 'koa'
 import Router from 'koa-router'
+import bodyParser from 'koa-bodyparser'
 
 const app = new Koa()
 const router = new Router()
 const route = new Route()
+app.use(bodyParser())
 
 const isArray = function(obj) {
   return Array.isArray(obj)
@@ -24,7 +27,11 @@ const auth = convert(async (ctx, next) => {
 @controller('/article')
 class Article {
   @get('/detail/:id')
-  @auth()
+  @auth
+  @required({
+    query:['id', 'name'],
+    params:['id']
+  })
   getDetail(ctx, next) {
     ctx.body = `detail ${ctx.params.id}`
   }
@@ -35,6 +42,9 @@ class Article {
   }
 
   @post('/post')
+  @required({
+    body:['name','id']
+  })
   updateArticle(ctx) {
     ctx.body = 'post'
   }
@@ -44,7 +54,6 @@ class Article {
     ctx.body = 'del'
   }
 }
-
 route.init(router)
 app
   .use(router.routes())

@@ -1,5 +1,6 @@
 import {
-  isArray
+  isArray,
+  hasOwnProperty
 } from './util'
 
 const routerMap = new Map()
@@ -49,14 +50,31 @@ export const convert = (middleware) => (target, key, descriptor) => {
 }
 
 export const required = rules => convert(async (ctx, next) => {
-  let missing = [query:[],body:[],]
+  let missing = {}
+  let hasError = false
+  let request = ctx.request
+  if (hasOwnProperty(rules, 'params')) {
+    request.params = ctx.params
+  }
   for (let k in rules) {
-    let err = [],type=ctx.request[k]
-    rules.forEach(i => {
-      if(!type[i]){
-        err.length?(missing[type]=[i]):missing[type].push(i)
+    let errs = []
+    rules[k].forEach(item => {
+      if (!request[k] || !request[k][item]) {
+        errs.push(item)
       }
     })
+    if (errs.length) {
+      missing[k] = `${errs.join(',')} is required`
+      hasError = true
+    }
+  }
+  if (hasError) {
+    ctx.body = {
+      statusCode: 400,
+      error: "Bad Request",
+      message: missing
+    }
+    return missing
   }
   await next()
 })

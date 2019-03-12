@@ -1,7 +1,11 @@
 /**
-* @param {any} obj
-* @reutrn {booolean}
-*/
-export const isArray=function (obj) {
-  return Array.isArray(obj)
-}
+ * @param {any} obj
+ * @return {booolean}
+ */
+export const isArray = obj => Array.isArray(obj)
+
+/**
+ * @param {object} obj
+ * @return {booolean}
+ */
+export const hasOwnProperty = (target, key) => target.hasOwnProperty(key)

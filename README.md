@@ -29,7 +29,7 @@ const middleware1 = convert(async (ctx, next) => {
 class Article {
 
   @get('/detail/:id')
-  @middleware1()
+  @middleware1
   getDetail(ctx) {
     ctx.body = `detail ${ctx.params.id}`
   }
@@ -68,6 +68,7 @@ methods
 -   post
 -   all
 -   convert
+-   required   Simple Verification of Parameters
 
 ### Route
 
