@@ -68,7 +68,7 @@ methods
 -   post
 -   all
 -   convert
--   required   Simple Verification of Parameters
+-   required   
 
 ### Route
 
