@@ -1,6 +1,7 @@
 import {
   isArray,
-  hasOwnProperty
+  hasOwnProperty,
+  exportFile
 } from './util'
 
 const routerMap = new Map()
@@ -100,5 +101,9 @@ export default class Route {
       }
       router[conf.method](basePath + conf.path, ...controller)
     }
+  }
+  setRouterPath(router, path) {
+    exportFile(path)
+    this.init(router)
   }
 }
