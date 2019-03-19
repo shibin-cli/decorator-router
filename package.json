@@ -1,10 +1,10 @@
 {
   "name": "koa-decorator-router",
   "version": "1.0.7",
-  "description": "",
+  "description": "Decorator Routing",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "babel src --out-dir dist",
     "example1": "node examples/index"
   },
@@ -12,7 +12,15 @@
     "type": "git",
     "url": "git+https://github.com/shibin-you/decorator-router.git"
   },
-  "author": "",
+  "keywords": [
+    "web",
+    "app",
+    "http",
+    "application",
+    "framework",
+    "middleware"
+  ],
+  "author": "shibin-you",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shibin-you/decorator-router/issues"
