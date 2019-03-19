@@ -1,6 +1,8 @@
 # koa-decorator-router
 [![npm](https://img.shields.io/npm/v/koa-decorator-router.svg?style=flat-square)](https://www.npmjs.com/package/koa-decorator-router)
 
+[中文文档](https://github.com/shibin-you/decorator-router/blob/master/docs/README_zh-CN.MD)
+
 Decorator Routing
 
 ## Install
