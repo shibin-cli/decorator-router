@@ -40,17 +40,17 @@ class Article {
   }
 
   @put('/add')
-  addArticle() {
+  addArticle(ctx) {
     ctx.body = 'add'
   }
 
   @post('/post')
-  updateArticle() {
+  updateArticle(ctx) {
     ctx.body = 'post'
   }
 
   @del('/del')
-  delArticle() {
+  delArticle(ctx) {
     ctx.body = 'del'
   }
 }
