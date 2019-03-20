@@ -96,9 +96,9 @@ app.listen(3000)
 
 
 -   Route
-    -   `Route`类下面有个`init`方法，接收一个参数，就是实例化的路由。这里需要注意是，在调用`init`方法要放在所有声明装饰器类的后面执行，因为这步是将装饰器路由上的所有方法挂载到路由上去
+    -   `init` 接收一个参数，就是实例化的路由。这里需要注意是，在调用`init`方法要放在所有声明装饰器类的后面执行，因为这步是将装饰器路由上的所有方法挂载到路由上去
     -   `setRouterPath` 设置导入路由文件夹的位置，并导入文件
-    -   `setRouterPathAndInit`导入路由文件，完成后自动自动初始化
+    -   `setRouterPathAndInit`导入路由文件，完成后自动初始化
 
 ```javascript
     route.setRouterPathAndInit(path.resolve(__dirname, './routes'), router)
