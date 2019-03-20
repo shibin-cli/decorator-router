@@ -76,5 +76,26 @@ methods
 -   required   
 
 ### Route
+  * `setRouterPath`  Set the location of the import routing folder and import files
+  * `init`  Functions for mounting routing
+  * `setRouterPathAndInit` Import routing file and automatically initialize after completion
 
-  `init`  Functions for mounting routing
+```javascript
+route.setRouterPathAndInit(path.resolve(__dirname, './routes'), router)
+app
+  .use(router.routes())
+  .use(router.allowedMethods())
+app.listen(3000)
+```
+or
+```javascript
+async function start(){
+  await route.setRouterPath(path.resolve(__dirname, './routes'))
+  route.init(router)
+  app
+    .use(router.routes())
+    .use(router.allowedMethods())
+  app.listen(3000)
+}
+start()
+```

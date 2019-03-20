@@ -102,8 +102,11 @@ export default class Route {
       router[conf.method](basePath + conf.path, ...controller)
     }
   }
-  setRouterPath(router, path) {
-    exportFile(path)
+  async setRouterPath(path) {
+    await exportFile(path)
+  }
+  async setRouterPathAndInit(path, router) {
+    await exportFile(path)
     this.init(router)
   }
 }
